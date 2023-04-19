@@ -1,13 +1,15 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.App {
+  background-image: url("images/landscape-309394.svg");
+  height: 100vh;
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.4 ease-out;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App-night {
+  background-image: url("images/sunset-48086.svg");
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.4 ease-out;
+  height: 100vh;
 }
