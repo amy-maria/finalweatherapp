@@ -1,15 +1,9 @@
-.App {
-  background-image: url("images/landscape-309394.svg");
-  height: 100vh;
-  background-size: cover;
-  background-position: bottom;
-  transition: 0.4 ease-out;
-}
-
 .App-night {
+  background-color: aquamarine;
   background-image: url("images/sunset-48086.svg");
   background-size: cover;
   background-position: bottom;
+
   transition: 0.4 ease-out;
   height: 100vh;
 }

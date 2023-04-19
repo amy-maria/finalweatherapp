@@ -2,11 +2,28 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function Search(props) {
-  const [city, setCity] = useState(props.city);
+  const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function showForecast(response) {
     console.log(response.data);
+    setWeatherData({
+      ready: true,
+      date: "April 1, 2023",
+      time: "12:00",
+      temp: response.data.main.temp,
+      wind: response.data.wind.speed,
+      windGust: response.data.wind.gust,
+      windDirection: response.data.wind.deg,
+      //trying to convert degrees to direction
+      sunrise: "06:00", //response.data.sys.sunrise * 1000//
+      sunset: "22:00", //response.data.sys.sunset * 1000//
+      feelsLike: response.data.main.feels_like,
+      humidity: response.data.main.humidity,
+      currentCity: response.data.name,
+      iconURL: "https://openweathermap.org/img/wn/10d@2x.png",
+      weatherDescription: response.data.weather[0].main,
+    });
   }
 
   function handleSubmit(event) {
@@ -24,37 +41,55 @@ export default function Search(props) {
     setCity(event.target.value);
   }
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="search" placeholder="Enter a city" onChange={changeCity} />
-        <input type="submit" value="search" />
-      </form>
-      <div className="d-flex mt-3 flex-row border border-primary">
-        <div className="p-2 col-6">
-          <div className="todaysDate"> As of April 18, 2023</div>
-          <div className="todayTime">22:11</div>
-          <div className="currencity">Current conditions for New York</div>
-          <div className="weatherDescription">Cloudy</div>
-
-          <div div className="currentTemp">
-            {" "}
-            50 F<span className="celsius"> C</span>
+  if (weatherData.ready) {
+    return (
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="search"
+            placeholder="Enter a city"
+            onChange={changeCity}
+          />
+          <input type="submit" value="search" />
+        </form>
+        <div className="d-flex mt-3 flex-row border border-primary">
+          <div className="p-2 col-6">
+            <div className="todaysDate"> As of {weatherData.date}</div>
+            <div className="todayTime">{weatherData.time}</div>
+            <div className="currencity">
+              Current conditions for {weatherData.currentCity}
+            </div>
+            <div className="description">{weatherData.weatherDescription}</div>
+            <div className="currentTemp">
+              {" "}
+              <img src={weatherData.iconURL} />
+              {Math.round(weatherData.temp)} F
+              <span className="celsius"> C</span>
+            </div>
+            <div className="feelsLike">
+              Feels like: {Math.round(weatherData.feelsLike)} F{" "}
+              <span className="celsius"> C</span>
+            </div>
           </div>
-          <div className="feelsLike">
-            Feels like: 45 F <span className="celsius"> C</span>
+          <div className="p-2 col-6">
+            <div className="wind">
+              Wind: {Math.round(weatherData.wind)} mph{" "}
+              {weatherData.windDirection}
+            </div>
+            <div className="windGust">
+              Wind gust: {Math.round(weatherData.windGust)} mph
+            </div>
+            <div className="humidity">Humidity: {weatherData.humidity} %</div>
+            <br />
+            <br />
+            <div className="timeSunrise">Sunrise:{weatherData.sunrise}</div>
+            <div className="timeSunset">Sunset: {weatherData.sunset}</div>
           </div>
-        </div>
-        <div className="p-2 col-6">
-          <div className="wind">Wind: 10 mph </div>
-          <div className="windGust">Wind gust: 5 mph</div>
-          <div className="humidity">Humidity: 25 %</div>
-          <br />
-          <br />
-          <div className="timeSunrise">Sunrise: 06:30</div>
-          <div className="timeSunset">Sunset: 19:00 </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    search();
+    return "Weather is loading ...";
+  }
 }
