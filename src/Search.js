@@ -4,6 +4,7 @@ import FormattedDate from "./FormattedDate";
 import SunriseTime from "./SunriseTime";
 import SunsetTime from "./SunsetTime";
 import WindDirection from "./WindDirection";
+import WindGust from "./WindGust";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -24,7 +25,7 @@ export default function Search(props) {
       feelsLike: response.data.main.feels_like,
       humidity: response.data.main.humidity,
       currentCity: response.data.name,
-      iconURL: "https://openweathermap.org/img/wn/10d@2x.png",
+      iconURL: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       weatherDescription: response.data.weather[0].main,
     });
   }
@@ -59,7 +60,7 @@ export default function Search(props) {
           <div className="p-2 col-6">
             <div className="todaysDateTime">
               {" "}
-              As of <FormattedDate date={weatherData.date} />
+              <FormattedDate date={weatherData.date} />
             </div>
             <div className="currencity">
               Current conditions for {weatherData.currentCity}
@@ -79,10 +80,10 @@ export default function Search(props) {
           <div className="p-2 col-6">
             <div className="wind">
               Wind: {Math.round(weatherData.wind)} mph{" "}
-              <WindDirection name={weatherData.windDirection} />
+              <WindDirection degree={weatherData.windDirection} />
             </div>
             <div className="windGust">
-              Wind gust: {Math.round(weatherData.windGust)} mph
+              <WindGust gust={Math.round(weatherData.windGust)} />
             </div>
             <div className="humidity">Humidity: {weatherData.humidity} %</div>
             <br />

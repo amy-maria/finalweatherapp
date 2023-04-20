@@ -1,11 +1,13 @@
 import React from "react";
 
 export default function SunsetTime(props) {
-  console.log(props);
+  const options = {
+    hour: "numeric",
+    minute: "numeric",
+    timeZoneName: "short",
+  };
 
-  let timeSunset = Intl.DateTimeFormat("en-US", {
-    timeStyle: "long",
-  }).format(props.sunset);
+  let timeSunset = props.time.toLocaleString(undefined, options);
 
   return <div>{timeSunset}</div>;
 }
