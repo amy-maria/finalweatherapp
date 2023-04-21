@@ -6,6 +6,7 @@ import SunsetTime from "./SunsetTime";
 import WindDirection from "./WindDirection";
 import WindGust from "./WindGust";
 import WeatherTemperature from "./WeatherTemperature";
+import FeelsLikeTemperature from "./FeelsLikeTemperature";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -67,13 +68,16 @@ export default function Search(props) {
               Current conditions for {weatherData.currentCity}
             </div>
             <div className="description">{weatherData.weatherDescription}</div>
-            <div className="currentTemp">
-              <img src={weatherData.iconURL} alt="weather_icon" />
+            <div className="currentTemp mx-auto p-2">
+              <img
+                src={weatherData.iconURL}
+                class="image-fluid "
+                alt="weather_icon"
+              />
               <WeatherTemperature temperature={Math.round(weatherData.temp)} />
             </div>
             <div className="feelsLike">
-              Feels like: {Math.round(weatherData.feelsLike)} F{" "}
-              <span className="celsius"> C</span>
+              <FeelsLikeTemperature temp={Math.round(weatherData.feelsLike)} />
             </div>
           </div>
           <div className="p-2 col-6">
