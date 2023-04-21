@@ -5,6 +5,7 @@ import SunriseTime from "./SunriseTime";
 import SunsetTime from "./SunsetTime";
 import WindDirection from "./WindDirection";
 import WindGust from "./WindGust";
+import WeatherTemperature from "./WeatherTemperature";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -12,6 +13,7 @@ export default function Search(props) {
 
   function showForecast(response) {
     console.log(response.data);
+
     setWeatherData({
       ready: true,
       date: new Date(response.data.dt * 1000),
@@ -59,7 +61,6 @@ export default function Search(props) {
         <div className="d-flex mt-3 flex-row border border-primary">
           <div className="p-2 col-6">
             <div className="todaysDateTime">
-              {" "}
               <FormattedDate date={weatherData.date} />
             </div>
             <div className="currencity">
@@ -67,10 +68,8 @@ export default function Search(props) {
             </div>
             <div className="description">{weatherData.weatherDescription}</div>
             <div className="currentTemp">
-              {" "}
               <img src={weatherData.iconURL} alt="weather_icon" />
-              {Math.round(weatherData.temp)} F
-              <span className="celsius"> C</span>
+              <WeatherTemperature temperature={Math.round(weatherData.temp)} />
             </div>
             <div className="feelsLike">
               Feels like: {Math.round(weatherData.feelsLike)} F{" "}
@@ -79,7 +78,7 @@ export default function Search(props) {
           </div>
           <div className="p-2 col-6">
             <div className="wind">
-              Wind: {Math.round(weatherData.wind)} mph{" "}
+              Wind: {Math.round(weatherData.wind)} mph
               <WindDirection degree={weatherData.windDirection} />
             </div>
             <div className="windGust">
@@ -93,7 +92,8 @@ export default function Search(props) {
               <SunriseTime time={weatherData.sunrise} />
             </div>
             <div className="timeSunset">
-              Sunset: <SunsetTime time={weatherData.sunset} />
+              Sunset:
+              <SunsetTime time={weatherData.sunset} />
             </div>
           </div>
         </div>
@@ -101,6 +101,6 @@ export default function Search(props) {
     );
   } else {
     search();
-    return "Weather is loading ...";
+    return "Loading ....";
   }
 }
