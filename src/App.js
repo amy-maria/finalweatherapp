@@ -11,7 +11,13 @@ function App() {
           <h1>Weather App</h1>
           <Search defaultCity="new york" />
           <footer className="App-footer">
-            Amy Rowell. Code available on GitHub.
+            Code available on{" "}
+            <a
+              href="https://github.com/amy-maria/finalweatherapp"
+              alt="link to GitHub site for project code"
+            >
+              GitHub.
+            </a>
           </footer>
         </div>
       </div>
