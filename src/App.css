@@ -15,7 +15,7 @@ h1 {
 
 .app-day {
   background-color: aqua;
-  background-image: url("images/landscape-309394.svg");
+  /*background-image: url("images/landscape-309394.svg");*/
   min-height: 100vh;
   background-size: cover;
   background-position: bottom;
