@@ -59,6 +59,7 @@ export default function Search(props) {
           />
           <input type="submit" value="search" />
         </form>
+
         <div className="d-flex mt-3 flex-row border border-primary">
           <div className="p-2 col-6">
             <div className="todaysDateTime">
@@ -69,15 +70,17 @@ export default function Search(props) {
             </div>
             <div className="description">{weatherData.weatherDescription}</div>
             <div className="currentTemp mx-auto p-2">
-              <img
-                src={weatherData.iconURL}
-                class="image-fluid "
-                alt="weather_icon"
-              />
-              <WeatherTemperature temperature={Math.round(weatherData.temp)} />
-            </div>
-            <div className="feelsLike">
-              <FeelsLikeTemperature temp={Math.round(weatherData.feelsLike)} />
+              <img src={weatherData.iconURL} alt="weather_icon"></img>
+              <div>
+                <WeatherTemperature
+                  temperature={Math.round(weatherData.temp)}
+                />
+              </div>
+              <div className="feelsLike">
+                <FeelsLikeTemperature
+                  temp={Math.round(weatherData.feelsLike)}
+                />
+              </div>
             </div>
           </div>
           <div className="p-2 col-6">
