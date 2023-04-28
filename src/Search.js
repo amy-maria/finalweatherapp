@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
-import SunriseTime from "./SunriseTime";
-import SunsetTime from "./SunsetTime";
 import WindDirection from "./WindDirection";
-import WindGust from "./WindGust";
 import WeatherTemperature from "./WeatherTemperature";
 import FeelsLikeTemperature from "./FeelsLikeTemperature";
+import DailyForecast from "./DailyForecast";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function showForecast(response) {
-    console.log(response.data);
-
+    console.log(response);
     setWeatherData({
       ready: true,
-      date: new Date(response.data.dt * 1000),
-      temp: response.data.main.temp,
+      coordinates: response.data.coordinates,
+      date: new Date(response.data.time * 1000),
+      temp: response.data.temperature.current,
       wind: response.data.wind.speed,
-      windGust: response.data.wind.gust,
-      windDirection: response.data.wind.deg,
+      //windGust: response.data.wind.gust,
+      windDirection: response.data.wind.degree,
       //trying to convert degrees to direction
-      sunrise: new Date(response.data.sys.sunrise * 1000),
-      sunset: new Date(response.data.sys.sunset * 1000),
-      feelsLike: response.data.main.feels_like,
-      humidity: response.data.main.humidity,
-      currentCity: response.data.name,
-      iconURL: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-      weatherDescription: response.data.weather[0].main,
+      //sunrise: new Date(response.data.sys.sunrise * 1000),
+      //sunset: new Date(response.data.sys.sunset * 1000),
+      feelsLike: response.data.temperature.feels_like,
+      humidity: response.data.temperature.humidity,
+      currentCity: response.data.city,
+      iconURL: response.data.condition.icon_url,
+      weatherDescription: response.data.condition.description,
     });
   }
 
@@ -39,8 +37,8 @@ export default function Search(props) {
   }
 
   function search() {
-    let key = "caa883a4a60d93878755b08a933f74ea";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=imperial`;
+    let key = `9f93aofdc8e0492e30c4aetee787abea`;
+    let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}&units=imperial`;
     axios.get(url).then(showForecast);
   }
 
@@ -66,7 +64,7 @@ export default function Search(props) {
               <FormattedDate date={weatherData.date} />
             </div>
             <div className="currencity">
-              Current conditions for {weatherData.currentCity}
+              Current conditions for {weatherData.currentCity},
             </div>
             <div className="description">{weatherData.weatherDescription}</div>
             <div className="currentTemp mx-auto p-2">
@@ -88,22 +86,13 @@ export default function Search(props) {
               Wind: {Math.round(weatherData.wind)} mph
               <WindDirection degree={weatherData.windDirection} />
             </div>
-            <div className="windGust">
-              <WindGust gust={Math.round(weatherData.windGust)} />
-            </div>
+
             <div className="humidity">Humidity: {weatherData.humidity} %</div>
             <br />
             <br />
-            <div className="timeSunrise">
-              Sunrise:
-              <SunriseTime time={weatherData.sunrise} />
-            </div>
-            <div className="timeSunset">
-              Sunset:
-              <SunsetTime time={weatherData.sunset} />
-            </div>
           </div>
         </div>
+        <DailyForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
