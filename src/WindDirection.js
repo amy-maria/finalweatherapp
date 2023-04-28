@@ -24,5 +24,5 @@ export default function WindDirection(props) {
   let direction = Math.round(props.degree / 22.5 + 0.5);
   let windDirection = compassDirection[direction % 16];
 
-  return <div>{windDirection}</div>;
+  return ` ${windDirection}`;
 }

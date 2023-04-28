@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./DailyForecast.css";
 import ForecastDay from "./ForecastDay";
@@ -7,20 +7,35 @@ export default function DailyForecast(props) {
   let [loaded, setLoaded] = useState(false);
   let [forecast, setForecast] = useState(null);
 
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
+
   function showDaily(response) {
-    console.log(response.data);
     setForecast(response.data.daily);
     setLoaded(true);
   }
   if (loaded) {
-    console.log(forecast);
     return (
-      <div className="col-sm-2">
-        <ForecastDay data={forecast[0]} />
+      <div className="container">
+        <div className="dailyWeather-cards text-center">
+          <div className="row">
+            {forecast.map(function (forecast, index) {
+              if (index >= 1 && index < 6) {
+                return (
+                  <div className="col-12 col-md-4 col-lg-2" key={index}>
+                    <ForecastDay data={forecast} />
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
+        </div>
       </div>
     );
   } else {
-    console.log(props);
     let lon = props.coordinates.longitude;
     let lat = props.coordinates.latitude;
     let key = `9f93aofdc8e0492e30c4aetee787abea`;

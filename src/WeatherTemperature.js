@@ -14,30 +14,18 @@ export default function WeatherTemperature(props) {
   }
 
   if (unit === "fahrenheit") {
-    return (
-      <div>
-        <span className="temperature">{props.temperature}</span>
-        <span className="unit">
+    return `
+        ${props.temperature}
           {""} F |
           <a href="/" onClick={showCelsius}>
             C
-          </a>
-        </span>
-      </div>
-    );
+          </a>`;
   } else {
     let celsiusTemp = Math.round(((props.temperature - 32) * 5) / 9);
-    console.log(celsiusTemp);
-    return (
-      <div>
-        <span className="temperature">{celsiusTemp}</span>
-        <span className="unit">
-          <a href="/" onClick={showFahrenheit}>
+    return `
+       ${celsiusTemp}<a href="/" onClick={showFahrenheit}>
             {""} F
           </a>
-          | C
-        </span>
-      </div>
-    );
+          | C`;
   }
 }
