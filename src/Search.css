@@ -1,0 +1,11 @@
+.search-bar {
+  border: 2px;
+  border-radius: 8px;
+  padding: 20px;
+}
+.btn {
+  margin: 10px;
+}
+.currentCity {
+  font-size: 28px;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import "./ForecastDay.css";
 
 export default function ForecastDay(props) {
   function day() {
@@ -18,34 +19,17 @@ export default function ForecastDay(props) {
   }
 
   return (
-    <div className="flip-card text-center">
-      <div className="flip-card-inner">
-        <div className="flip-card-front ">
-          <div className="DailyForecast-day">{day()}</div>
-          <img
-            src={props.data.condition.icon_url}
-            alt="weather icon"
-            className="img-fluid"
-          ></img>
-          <div className="DailyForecast-temp">
-            <div>
-              {minTemp()}
-              {maxTemp()}
-            </div>
-          </div>
-        </div>
-        <div className="flip-card-back">
-          <div className="DailyForecast-description text-capitalize">
-            {props.data.condition.description}
-          </div>
-          <div className="DailyForecast-wind">
-            Wind:{Math.round(props.data.wind.speed)} mph
-          </div>
-          <div className="DailyForecast-humidity">
-            Humidity: {props.data.temperature.humidity}%
-          </div>
-        </div>
-      </div>
+    <div className="card-body">
+      <h5 className="card-title text-center">{day()}</h5>
+      <img
+        src={props.data.condition.icon_url}
+        alt="weather icon"
+        className="img-fluid"
+      ></img>
+      <ul className="DailyForecast-temp">
+        <li className="text-center">{minTemp()}</li>
+        <li className="text-center">{maxTemp()}</li>
+      </ul>
     </div>
   );
 }

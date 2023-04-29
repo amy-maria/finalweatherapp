@@ -3,8 +3,8 @@ import React from "react";
 export default function WindDirection(props) {
   const compassDirection = [
     `N`,
-    `NNE`,
-    `NE`,
+    `NNE `,
+    `NE `,
     `ENE`,
     `E`,
     `ESE`,

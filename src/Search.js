@@ -5,6 +5,7 @@ import WindDirection from "./WindDirection";
 import WeatherTemperature from "./WeatherTemperature";
 import FeelsLikeTemperature from "./FeelsLikeTemperature";
 import DailyForecast from "./DailyForecast";
+import "./Search.css";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -23,6 +24,7 @@ export default function Search(props) {
       currentCity: response.data.city,
       iconURL: response.data.condition.icon_url,
       weatherDescription: response.data.condition.description,
+      pressure: response.data.temperature.pressure,
     });
   }
 
@@ -43,8 +45,8 @@ export default function Search(props) {
 
   if (weatherData.ready) {
     return (
-      <div>
-        <div>
+      <div className="container">
+        <div className="search-bar border border-primary">
           <form onSubmit={handleSubmit}>
             <input
               type="search"
@@ -54,44 +56,56 @@ export default function Search(props) {
             <input
               type="submit"
               class="btn btn-primary btn-sm"
-              value="search"
+              value="Search"
             />
           </form>
-
-          <div className="d-flex mt-3 flex-row border border-primary">
-            <div className="p-2 col-6">
-              <div className="todaysDateTime">
-                <FormattedDate date={weatherData.date} />
+          <div className="container">
+            <div className="d-flex mt-3 flex-row">
+              <div className="p-2 col-6">
+                <div className="todaysDateTime text-center">
+                  <FormattedDate date={weatherData.date} />
+                </div>
+                <div className="currentCity text-center">
+                  {weatherData.currentCity}
+                </div>
+                <div className="description text-center text-capitalize">
+                  {weatherData.weatherDescription}
+                </div>
+                <div className="temp">
+                  <img
+                    src={weatherData.iconURL}
+                    alt="weather_icon"
+                    className="weather-icon"
+                  ></img>{" "}
+                  <WeatherTemperature
+                    temperature={Math.round(weatherData.temp)}
+                  />
+                </div>
+                <div className="feelsLike text-center">
+                  <FeelsLikeTemperature
+                    temp={Math.round(weatherData.feelsLike)}
+                  />
+                </div>
               </div>
-              <div className="currencity">{weatherData.currentCity}</div>
-              <div className="description">
-                Current conditions:
-                {weatherData.weatherDescription}
-              </div>
-              <div>
-                <img src={weatherData.iconURL} alt="weather_icon"></img>{" "}
-                <WeatherTemperature
-                  temperature={Math.round(weatherData.temp)}
-                />
-              </div>
-              <div className="feelsLike">
-                <FeelsLikeTemperature
-                  temp={Math.round(weatherData.feelsLike)}
-                />
+              <div className="p-2 col-6">
+                <br />
+                <br />
+                <div className="wind text-center">
+                  Wind: {Math.round(weatherData.wind)} mph
+                  <WindDirection degree={weatherData.windDirection} />
+                </div>
+                <div className="humidity text-center">
+                  Humidity: {weatherData.humidity} %
+                </div>
+                <div className="pressure text-center">
+                  Pressure: {weatherData.pressure} mb
+                </div>
               </div>
             </div>
           </div>
-          <div className="p-2 col-6">
-            <br />
-            <br />
-            <div className="wind">
-              Wind: {Math.round(weatherData.wind)} mph
-              <WindDirection degree={weatherData.windDirection} />
-            </div>
-            <div className="humidity">Humidity: {weatherData.humidity} %</div>
-          </div>
-          <DailyForecast coordinates={weatherData.coordinates} />
         </div>
+
+        <DailyForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {

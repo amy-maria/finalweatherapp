@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./FeelsLikeTemperature.css";
 
 export default function FeelsLikeTemperature(props) {
   const [unit, setUnit] = useState("fahrenheit");
@@ -14,29 +15,29 @@ export default function FeelsLikeTemperature(props) {
   }
   if (unit === "fahrenheit") {
     return (
-      <div>
+      <span>
         Feels like: {props.temp}{" "}
         <span className="unit">
-          {""} F |
+          {""} °F|
           <a href="/" onClick={showCelsius}>
-            C
+            °C
           </a>
         </span>
-      </div>
+      </span>
     );
   } else {
     let celsiusTemp = Math.round(((props.temp - 32) * 5) / 9);
 
     return (
-      <div>
+      <span>
         Feels like: {celsiusTemp}{" "}
         <span className="unit">
           <a href="/" onClick={showFahrenheit}>
-            {""} F
+            {""} °F
           </a>
-          | C
+          |°C
         </span>
-      </div>
+      </span>
     );
   }
 }

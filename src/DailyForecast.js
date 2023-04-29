@@ -17,22 +17,18 @@ export default function DailyForecast(props) {
   }
   if (loaded) {
     return (
-      <div className="container">
-        <div className="dailyWeather-cards text-center">
-          <div className="row">
-            {forecast.map(function (forecast, index) {
-              if (index >= 1 && index < 6) {
-                return (
-                  <div className="col-12 col-md-4 col-lg-2" key={index}>
-                    <ForecastDay data={forecast} />
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
-          </div>
-        </div>
+      <div class="row">
+        {forecast.map(function (forecast, index) {
+          if (index >= 1 && index < 6) {
+            return (
+              <div className="col-2" key={index}>
+                <ForecastDay data={forecast} />
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
       </div>
     );
   } else {
