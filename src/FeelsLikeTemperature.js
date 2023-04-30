@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./FeelsLikeTemperature.css";
 
 export default function FeelsLikeTemperature(props) {
   const [unit, setUnit] = useState("fahrenheit");

@@ -9,7 +9,7 @@ function App() {
       <div className="container">
         <Search defaultCity="new york" />
       </div>
-      <footer>
+      <footer className="fixed-bottom text-center">
         Weather app code available on
         <a
           href="https://github.com/amy-maria/finalweatherapp"

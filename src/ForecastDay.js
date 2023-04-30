@@ -19,14 +19,16 @@ export default function ForecastDay(props) {
   }
 
   return (
-    <div className="card-body">
+    <div className="card bg-transparent border border-0 mt-3">
       <h5 className="card-title text-center">{day()}</h5>
+
       <img
         src={props.data.condition.icon_url}
-        alt="weather icon"
-        className="img-fluid"
+        className="weather-icon "
+        alt="weather-icon"
       ></img>
-      <ul className="DailyForecast-temp">
+
+      <ul className="list-inline mx-auto justify-content-center">
         <li className="text-center">{minTemp()}</li>
         <li className="text-center">{maxTemp()}</li>
       </ul>

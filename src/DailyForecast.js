@@ -17,11 +17,11 @@ export default function DailyForecast(props) {
   }
   if (loaded) {
     return (
-      <div class="row">
+      <div class="row row-cols-xs-2 row-cols-sm-5 justify-content-evenly">
         {forecast.map(function (forecast, index) {
           if (index >= 1 && index < 6) {
             return (
-              <div className="col-2" key={index}>
+              <div className="col-xs-2 mt-2 " key={index}>
                 <ForecastDay data={forecast} />
               </div>
             );

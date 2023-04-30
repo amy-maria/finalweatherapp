@@ -46,60 +46,64 @@ export default function Search(props) {
   if (weatherData.ready) {
     return (
       <div className="container">
-        <div className="search-bar border border-primary">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="search"
-              placeholder="Enter a city"
-              onChange={changeCity}
-            />
-            <input
-              type="submit"
-              class="btn btn-primary btn-sm"
-              value="Search"
-            />
-          </form>
-          <div className="container">
-            <div className="d-flex mt-3 flex-row">
-              <div className="p-2 col-6">
-                <div className="todaysDateTime text-center">
-                  <FormattedDate date={weatherData.date} />
-                </div>
-                <div className="currentCity text-center">
-                  {weatherData.currentCity}
-                </div>
-                <div className="description text-center text-capitalize">
-                  {weatherData.weatherDescription}
-                </div>
-                <div className="temp">
-                  <img
-                    src={weatherData.iconURL}
-                    alt="weather_icon"
-                    className="weather-icon"
-                  ></img>{" "}
-                  <WeatherTemperature
-                    temperature={Math.round(weatherData.temp)}
-                  />
-                </div>
-                <div className="feelsLike text-center">
-                  <FeelsLikeTemperature
-                    temp={Math.round(weatherData.feelsLike)}
-                  />
-                </div>
+        <nav class="navbar bg-body-tertiary">
+          <div className="container-fluid">
+            <form class="d-flex" role="search" onSubmit={handleSubmit}>
+              <input
+                type="search"
+                className="search"
+                aria-label="Search"
+                placeholder="Enter a city"
+                onChange={changeCity}
+              />
+              <input
+                type="submit"
+                class="btn btn-sm btn-outline-dark"
+                value="Search"
+              />
+            </form>
+          </div>
+        </nav>
+        <div className="container-sm">
+          <div className="d-flex mt-3 flex-row">
+            <div className="p-2 col-6">
+              <div className="todaysDateTime text-center">
+                <FormattedDate date={weatherData.date} />
               </div>
-              <div className="p-2 col-6">
-                <br />
-                <br />
-                <div className="wind text-center">
-                  Wind: {Math.round(weatherData.wind)} mph
-                  <WindDirection degree={weatherData.windDirection} />
-                </div>
-                <div className="humidity text-center">
-                  Humidity: {weatherData.humidity} %
-                </div>
-                <div className="pressure text-center">
-                  Pressure: {weatherData.pressure} mb
-                </div>
+              <div className="currentCity text-center">
+                {weatherData.currentCity}
+              </div>
+              <div className="description text-center text-capitalize">
+                {weatherData.weatherDescription}
+              </div>
+              <div className="temp">
+                <img
+                  src={weatherData.iconURL}
+                  alt="weather_icon"
+                  className="weather-icon"
+                ></img>{" "}
+                <WeatherTemperature
+                  temperature={Math.round(weatherData.temp)}
+                />
+              </div>
+              <div className="feelsLike text-center">
+                <FeelsLikeTemperature
+                  temp={Math.round(weatherData.feelsLike)}
+                />
+              </div>
+            </div>
+            <div className="p-2 col-6">
+              <br />
+              <br />
+              <div className="wind text-center">
+                Wind: {Math.round(weatherData.wind)} mph
+                <WindDirection degree={weatherData.windDirection} />
+              </div>
+              <div className="humidity text-center">
+                Humidity: {weatherData.humidity} %
+              </div>
+              <div className="pressure text-center">
+                Pressure: {weatherData.pressure} mb
               </div>
             </div>
           </div>
