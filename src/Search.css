@@ -13,7 +13,7 @@
 .search:hover,
 .search:focus {
   border: 1.5px solid #009688;
-  background-color: white;
+  background-color: rgb(239, 235, 235);
 }
 
 .btn {
@@ -26,4 +26,19 @@
 .weather-icon .Search {
   width: 50px;
   height: 50px;
+}
+
+@media screen and (max-width: 576px) {
+  .currentCity {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .feelsLike {
+    font-size: 12px;
+  }
+  .wind,
+  .humidity,
+  .pressure {
+    font-size: 12px;
+  }
 }

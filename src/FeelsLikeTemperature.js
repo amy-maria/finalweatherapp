@@ -15,11 +15,11 @@ export default function FeelsLikeTemperature(props) {
   if (unit === "fahrenheit") {
     return (
       <span>
-        Feels like: {props.temp}{" "}
-        <span className="unit">
-          {""} °F|
+        Feels like: {props.temp}°{" "}
+        <span className="units">
+          {""} F|
           <a href="/" onClick={showCelsius}>
-            °C
+            C
           </a>
         </span>
       </span>
@@ -29,12 +29,12 @@ export default function FeelsLikeTemperature(props) {
 
     return (
       <span>
-        Feels like: {celsiusTemp}{" "}
-        <span className="unit">
+        Feels like: {celsiusTemp}°{" "}
+        <span className="units">
           <a href="/" onClick={showFahrenheit}>
-            {""} °F
+            {""} F
           </a>
-          |°C
+          | C
         </span>
       </span>
     );

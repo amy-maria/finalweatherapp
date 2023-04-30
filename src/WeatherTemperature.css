@@ -8,3 +8,12 @@ a:link {
 .units {
   font-size: 16px;
 }
+@media screen and (max-width: 576px) {
+  .temp {
+    font-size: 18px;
+  }
+
+  .units {
+    display: none;
+  }
+}

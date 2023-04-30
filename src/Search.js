@@ -64,16 +64,16 @@ export default function Search(props) {
             </form>
           </div>
         </nav>
-        <div className="container-sm">
+        <div className="container">
           <div className="d-flex mt-3 flex-row">
-            <div className="p-2 col-6">
-              <div className="todaysDateTime text-center">
+            <div className="col-6">
+              <div className="todaysDateTime text-center p-1">
                 <FormattedDate date={weatherData.date} />
               </div>
-              <div className="currentCity text-center">
+              <div className="currentCity text-center p-2">
                 {weatherData.currentCity}
               </div>
-              <div className="description text-center text-capitalize">
+              <div className="description text-center text-capitalize p-2">
                 {weatherData.weatherDescription}
               </div>
               <div className="temp">
@@ -92,17 +92,15 @@ export default function Search(props) {
                 />
               </div>
             </div>
-            <div className="p-2 col-6">
-              <br />
-              <br />
-              <div className="wind text-center">
+            <div className="p-2 col-6 float-sm-end">
+              <div className="wind text-center mt-4 p-2">
                 Wind: {Math.round(weatherData.wind)} mph
                 <WindDirection degree={weatherData.windDirection} />
               </div>
-              <div className="humidity text-center">
+              <div className="humidity text-center p-2">
                 Humidity: {weatherData.humidity} %
               </div>
-              <div className="pressure text-center">
+              <div className="pressure text-center p-2">
                 Pressure: {weatherData.pressure} mb
               </div>
             </div>

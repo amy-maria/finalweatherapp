@@ -9,15 +9,23 @@ function App() {
       <div className="container">
         <Search defaultCity="new york" />
       </div>
-      <footer className="fixed-bottom text-center">
-        Weather app code available on
+      <footer className="footer fixed-bottom text-center">
+        Project by Amy Rowell. Weather app code available on
         <a
           href="https://github.com/amy-maria/finalweatherapp"
           alt="link to GitHub site for project code"
         >
           {" "}
-          GitHub{" "}
+          GitHub
+        </a>{" "}
+        and hosted on{" "}
+        <a
+          href="https://helpful-figolla-5fbcfd.netlify.app"
+          alt="link to Netlify site for weather app"
+        >
+          Netlify
         </a>
+        .
       </footer>
     </div>
   );

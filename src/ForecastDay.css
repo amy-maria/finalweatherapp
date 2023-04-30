@@ -11,10 +11,29 @@ li {
   margin: 0;
   padding: 0;
 }
-.weather-icon .ForecastDay {
+.card {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: center !important;
   width: 75px;
   height: 75px;
+}
+@media screen and (max-width: 576px) {
+  .card {
+    align-items: center !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+  }
+}
+@media screen and (max-height: 420px) and (orientation: landscape) {
+  .card {
+    position: relative;
+    align-items: center !important;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+  }
 }
