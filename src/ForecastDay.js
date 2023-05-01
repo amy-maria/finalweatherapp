@@ -19,7 +19,7 @@ export default function ForecastDay(props) {
   }
 
   return (
-    <div className="card bg-transparent border border-0 p-2 mt-3">
+    <div className="card bg-transparent border border-0 mt-3">
       <h5 className="card-title text-center">{day()}</h5>
       <div>
         <img
